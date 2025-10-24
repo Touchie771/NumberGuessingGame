@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,16 +12,20 @@ public class Main {
             System.out.println("x is a natural number and x < 101\n");
             while (true) {
                 System.out.println("Enter your guess: ");
-                int guess = scanner.nextInt();
-                if (guess < x) { System.out.println("x is greater!"); continue; }
-                if (guess > x) { System.out.println("x is smaller!"); continue; }
-                System.out.println("You were correct!");
-                break;
+                try {
+                    int guess = scanner.nextInt();
+                    if (guess < x) { System.out.println("x is greater!"); continue; }
+                    if (guess > x) { System.out.println("x is smaller!"); continue; }
+                    System.out.println("You were correct!");
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter a valid number!");
+                    scanner.nextLine(); // Consume invalid input
+                }
             }
             System.out.println("Want to play again ? (y/n)");
-            // Consume trailing newline
-            scanner.nextLine();
-            if (!scanner.nextLine().equalsIgnoreCase("y")) break;
+            String response = scanner.nextLine();
+            if (!response.equalsIgnoreCase("y")) break;
         }
     }
 }
