@@ -8,7 +8,7 @@ public class Main {
         DataManager dataManager = new DataManager();
         dataManager.initialize();
         while (true) {
-            int x = new Random().nextInt(0, 101);
+            int x = new Random().nextInt(101);
             Scanner scanner = new Scanner(System.in);
             System.out.println("---Number Guessing Game---\n");
             System.out.println("x is a natural number and x < 101\n");
